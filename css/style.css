@@ -1,0 +1,647 @@
+/* ==========================================================================
+   1. リセット & 基本設定
+   ========================================================================== */
+:root {
+    /* ライトモード（デフォルト）のカラー変数 - レトロポップ＆アイボリー系 */
+    --bg-main: #FDFBF7; /* 温かみのあるアイボリー */
+    --bg-sub: #F4EFE6; /* 少し濃いクリーム色 */
+    --text-main: #33322E; /* 真っ黒ではない、ブラウンがかった墨色 */
+    --text-muted: #7A7568;
+    --accent-color: #8B1E28; /* アクセントのエンジ色 */
+    --accent-yellow: #E6B422; /* マイルドな黄色 */
+    --accent-blue: #4B759A; /* マイルドな青 */
+    --card-bg: #FFFFFF;
+    --card-border: #DCD6C8;
+    --header-bg: rgba(253, 251, 247, 0.9);
+    --header-border: #DCD6C8;
+}
+
+/* ダークモード用のカラー変数（bodyにこのクラスが付与されると色が切り替わる） */
+.dark-mode {
+    --bg-main: #121212;
+    --bg-sub: #1E1E1E;
+    --text-main: #FDFBF7;
+    --text-muted: #A3A098;
+    --accent-color: #E6B422; /* ダークモード時は黄色をアクセントに */
+    --accent-yellow: #E6B422;
+    --accent-blue: #4B759A;
+    --card-bg: #2C2C2C;
+    --card-border: rgba(255, 255, 255, 0.1);
+    --header-bg: rgba(18, 18, 18, 0.9);
+    --header-border: rgba(255, 255, 255, 0.05);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease; /* ダークモード切替時のアニメーション */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.5s ease;
+}
+
+/* 共通コンテナ */
+.section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 24px;
+}
+
+.section-title {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 400; /* DotGothicは400で綺麗に表示されます */
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* タイトルの下にシンプルで繊細なアクセントライン */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 1px;
+    background-color: var(--accent-color);
+}
+
+/* ==========================================================================
+   2. 固定ヘッダー（Navigation）
+   ========================================================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--header-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
+}
+
+/* カーソル点滅アニメーション */
+.logo-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.main-nav a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.main-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* ダークモード切替ボタン */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   3. メインビジュアル
+   ========================================================================== */
+.main-visual {
+    position: relative; /* 疑似要素の基準位置とするために追加 */
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+    z-index: 1; /* 文字が背景に埋もれないように追加 */
+    background-color: var(--bg-main); /* 背景画像をやめてベースカラーを敷く */
+}
+
+/* ブラウン管風の走査線エフェクト */
+.main-visual::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0) 50%, 
+        rgba(0, 0, 0, 0.04) 50% /* うっすらとした横縞を描画 */
+    );
+    background-size: 100% 4px; /* 走査線の幅 */
+    z-index: -1; /* 文字の後ろに配置 */
+    pointer-events: none; /* マウス操作を邪魔しないようにする */
+}
+.mv-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    color: var(--accent-color);
+}
+
+.mv-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
+/* ターミナルUI */
+.terminal-wrapper {
+    background-color: #121212; /* レトロモニターを意識したより深い黒 */
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(39, 201, 63, 0.15), 0 10px 30px rgba(0, 0, 0, 0.4); /* ターミナルの緑色をうっすら発光させる */
+    overflow: hidden;
+    width: 100%;
+    max-width: 650px;
+    margin: 40px auto 0;
+    text-align: left;
+    font-family: 'Share Tech Mono', monospace; /* フォントもギークな等幅に変更 */
+    border: 1px solid #333; /* うっすらとした枠線 */
+}
+
+.terminal-header {
+    background-color: #333333;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #999;
+    font-size: 0.8rem;
+    margin-left: 12px;
+}
+
+.terminal-body {
+    padding: 24px;
+    color: #a9b7c6;
+    font-size: 0.95rem;
+    min-height: 180px;
+    line-height: 1.6;
+}
+
+/* 資格セクション用ミニターミナル */
+.terminal-wrapper.mini {
+    max-width: 100%;
+    margin: 0 0 24px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.terminal-wrapper.mini .terminal-body {
+    min-height: 120px;
+    font-size: 0.85rem;
+    padding: 16px;
+}
+
+/* ==========================================================================
+   4. 自己紹介（Profile）
+   ========================================================================== */
+.profile-section {
+    background-color: var(--bg-sub);
+    transition: background-color 0.3s ease;
+}
+
+.profile-content {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.profile-image {
+    flex-shrink: 0;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #e2e8f0; /* 画像がない場合の仮背景 */
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated; /* レトロポップなピクセル感を付与 */
+    filter: contrast(110%);
+    transition: transform 0.4s ease;
+}
+
+.profile-image:hover img {
+    transform: scale(1.05); /* ホバーで少し拡大 */
+}
+
+.profile-text p {
+    margin-bottom: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.profile-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   5. 制作実績（Works）
+   ========================================================================== */
+/* 今後カードが増えても自動で綺麗に並ぶようGridを採用 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+/* aタグをブロック要素化し、変数を適用 */
+a.work-card {
+    display: block;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.3s ease;
+}
+
+/* カード全体のデフォルトホバー：レトロポップなソリッドシャドウ */
+a.work-card:hover {
+    transform: translate(-4px, -4px); /* 斜め上に浮き上がる */
+    box-shadow: 6px 6px 0px var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Work1：青系のソリッドシャドウ */
+a.work-card.theme-blue:hover {
+    box-shadow: 6px 6px 0px var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+/* Work2：黄色系のソリッドシャドウ（テーマカラーに合わせて変更） */
+a.work-card.theme-green:hover {
+    box-shadow: 6px 6px 0px var(--accent-yellow);
+    border-color: var(--accent-yellow);
+}
+
+.work-image {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    background-color: #f1f5f9;
+}
+
+.work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* レトロポップな質感：ピクセルを際立たせ、コントラスト・彩度を上げる */
+    image-rendering: pixelated;
+    filter: contrast(120%) saturate(130%);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* ホバー時に画像を少し拡大＆くっきりさせる演出 */
+.work-card:hover .work-image img {
+    transform: scale(1.05);
+    filter: contrast(130%) saturate(150%);
+}
+
+.work-body {
+    padding: 30px 24px;
+}
+
+.work-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--accent-color);
+}
+
+.work-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    text-align: justify;
+}
+
+/* 擬似的なリンクテキスト（HTMLで span.pseudo-link に変更した箇所） */
+.pseudo-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* カード全体をホバーした時に、中のリンクテキストの色も変化させる */
+a.work-card:hover .pseudo-link {
+    color: var(--text-muted);
+    border-color: var(--text-muted);
+}
+
+/* 【修正】汎用リンクボタン（Works詳細、Profile詳細 共通）のスタイリング */
+.works-more-btn,
+.profile-more-btn {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    padding: 12px 36px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    /* カードのホバーアニメーションの速度と統一 */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 実績カードと統一感を持たせた、レトロポップなソリッドシャドウホバー演出 */
+.works-more-btn:hover,
+.profile-more-btn:hover {
+    transform: translate(-4px, -4px); /* 斜め上に浮き上がる */
+    box-shadow: 4px 4px 0px var(--accent-color); /* エンジ色（ダークモード時は黄色）のソリッド影 */
+}
+
+/* ==========================================================================
+   6. お問い合わせ（Contact）
+   ========================================================================== */
+.contact-section {
+    background-color: var(--bg-sub);
+    transition: background-color 0.3s ease;
+}
+
+.contact-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 入力欄にフォーカスした際のスタイリッシュな極細線 */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+/* （中略 ※ .form-btn-wrap はそのまま維持） */
+
+.submit-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--bg-main);
+    padding: 14px 48px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover {
+    opacity: 0.8;
+}
+
+/* 送信ステータス表示用スタイル */
+.form-status {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none; /* 初期は非表示 */
+}
+.form-status.success {
+    display: block;
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+.form-status.error {
+    display: block;
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* ==========================================================================
+   7. フッター
+   ========================================================================== */
+.site-footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    padding: 40px 24px;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-footer p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   8. スクロールエフェクト（ふわっとフェードイン用の初期状態）
+   ========================================================================== */
+.js-fade-element {
+    opacity: 0;
+    transform: translateY(30px); /* 下からふわっと浮き上がらせるための下方に配置 */
+    transition: opacity 1.0s ease, transform 1.0s ease;
+}
+
+/* JavaScriptでこのクラスが付与されたら表示状態にする */
+.js-fade-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   9. レスポンシブ（スマホ・タブレット対応）
+   ========================================================================== */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 24px;
+    }
+    
+    .main-nav ul {
+        gap: 24px;
+    }
+
+    .mv-title {
+        font-size: 2.5rem;
+    }
+
+    .section-container {
+        padding: 60px 24px;
+    }
+
+    .profile-content {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   10. 初回ローディング画面（ターミナル風）
+   ========================================================================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0f172a; /* 深みのあるコンソールブラック */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10%; /* 少し左寄りに配置 */
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* JSから付与してローディング画面をフェードアウトさせるためのクラス */
+.loading-overlay.is-loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-container {
+    font-family: 'Share Tech Mono', monospace;
+    color: #27c93f; /* ターミナルグリーン */
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.loading-txt {
+    min-height: 2.4rem; /* タイピング前のガタつき防止 */
+}
+
+/* Welcome! だけ大きく黄色で表示 */
+.loading-welcome {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .loading-overlay {
+        padding-left: 5%;
+    }
+    .loading-welcome {
+        font-size: 2.5rem;
+    }
+}

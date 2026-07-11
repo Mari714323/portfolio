@@ -1,0 +1,29 @@
+<section id="contact" class="contact-section js-fade-element">
+    <div class="section-container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-form-wrapper">
+            <form id="contact-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="name">お名前</label>
+                    <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">件名</label>
+                    <input type="text" id="subject" name="subject" required placeholder="お問い合わせ内容の件名">
+                </div>
+                <div class="form-group">
+                    <label for="message">お問い合わせ内容</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="こちらにお問い合わせ内容をご入力ください。"></textarea>
+                </div>
+                <div class="form-btn-wrap">
+                    <button type="submit" id="submit-btn" class="submit-btn">送信する</button>
+                </div>
+            </form>
+            <div id="form-status" class="form-status"></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariko Yamaguchi | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DotGothic16&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-container">
+            <div id="loading-line-1" class="loading-txt"></div>
+            <div id="loading-line-2" class="loading-txt"></div>
+            <div id="loading-line-3" class="loading-txt loading-welcome"></div>
+        </div>
+    </div>
+
+    <div id="common-header"></div>
+
+    <main>
+        <section class="main-visual">
+        <div class="mv-container">
+            <h1 class="mv-title">Mariko Yamaguchi</h1>
+            <p class="mv-subtitle">Cloud Infrastructure & Data Processing Engineer</p>
+            <div class="terminal-wrapper js-terminal-mv">
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                </div>
+                <div class="terminal-body" id="typing-mv"></div>
+            </div>
+        </div>
+    </section>
+
+        <section id="profile" class="profile-section js-fade-element">
+            <div class="section-container">
+                <h2 class="section-title">Profile</h2>
+                <div class="profile-content">
+                    <div class="profile-image">
+                        <img src="images/profile.webp" alt="山口万里子 プロフィール写真">
+                    </div>
+                    <div class="profile-text">
+                        <p>教員からITエンジニアへと転身し、現在は主にデータ処理基盤の開発や要件定義に従事しています。</p>
+                        <p>前職で鍛え上げた「相手の意図を汲み取り、要件をわかりやすく伝えるコミュニケーション能力」により、潜在的な課題を引き出し、要件定義から実装まで手戻りのないスムーズな開発を実現します。</p>
+                        <p>技術面においては、PostgreSQLやSQL Serverを用いた高度なデータベース操作を得意としており、バッチ処理や大容量データの正確な比較・ソート処理など、実務に即したデータエンジニアリングを提供可能です。</p>
+                        
+                        <div class="terminal-wrapper mini js-terminal-cert" style="margin-bottom: 24px;">
+                            <div class="terminal-header">
+                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                                <span class="terminal-title">bash - get_certifications.sh</span>
+                            </div>
+                            <div class="terminal-body" id="typing-cert"></div>
+                        </div>
+
+                        <div>
+                            <a href="/about/" class="profile-more-btn">
+                                and more...
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="works-section">
+            <div class="section-container">
+                <h2 class="section-title js-fade-element">Works</h2>
+                <div class="works-grid">
+                    
+                    <a href="https://d20ju2xziuwnwt.cloudfront.net/index.html" target="_blank" rel="noopener noreferrer" class="work-card theme-blue js-fade-element">
+                        <div class="work-image">
+                            <img src="images/work1.webp" alt="朝runナビゲータのイメージ画像">
+                        </div>
+                        <div class="work-body">
+                            <h3 class="work-title">朝runナビゲータ</h3>
+                            <p class="work-desc">天気APIを活用し、1週間の中でランニングに最適な日を自動算出・提案するアプリです。毎朝の天候確認による「走るかどうかの意思決定」の負担（ウィルパワーの消費）をなくし、スムーズに習慣化をサポートする目的で開発しました。</p>
+                            <div class="work-link">
+                                <span class="pseudo-link">View Project</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://docugen-ai-cwfvhfuzwcj2kmu3943pgz.streamlit.app/" target="_blank" rel="noopener noreferrer" class="work-card theme-green js-fade-element">
+                        <div class="work-image">
+                            <img src="images/work2.webp" alt="書類叩き台作成アプリのイメージ画像">
+                        </div>
+                        <div class="work-body">
+                            <h3 class="work-title">書類叩き台作成アプリ</h3>
+                            <p class="work-desc">Gemini APIを活用し、報告書・設計書・提案書のたたき台を自動生成するアプリです。ユーザーが複雑なプロンプトを自作する手間を省き、必要な内容のみをシンプルに入力するだけで、迅速かつ効率的に書類作成を進められる設計にしています。</p>
+                            <div class="work-link">
+                                <span class="pseudo-link">View Project</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;" class="js-fade-element">
+                    <a href="/works/" class="works-more-btn">
+                        📄 制作実績の技術的な詳細一覧を見る
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <div id="common-contact"></div>
+    </main>
+
+    <div id="common-footer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

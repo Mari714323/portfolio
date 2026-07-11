@@ -1,0 +1,12 @@
+# OSが自動生成する不要なファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# VS Codeのローカル設定フォルダ
+.vscode/
+*.code-workspace

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Mariko Yamaguchi Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DotGothic16&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="common-header"></div>
+
+    <main style="padding-top: 80px;"> <section class="about-intro-section">
+            <div class="section-container" style="padding-bottom: 40px;">
+                <h2 class="section-title">About Me</h2>
+                <div class="profile-text" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: 1.2rem; font-weight: 500; margin-bottom: 20px; color: var(--accent-color);">
+                        「働く大人が楽になれば、それは必ず子供たちの未来へ還元される」
+                    </p>
+                    <p>教員からITエンジニアへと転身し、現在はデータ処理基盤の開発やインフラ構築、要件定義に従事しています。</p>
+                    <p>相手の困り感に徹底的に寄り添うコミュニケーションと、ドキュメントの正確な読解に基づくシンプルなシステム構築を強みとしています。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section js-fade-element">
+            <div class="section-container">
+                <h3 style="font-size: 1.6rem; margin-bottom: 30px; color: var(--accent-color); font-family: 'DotGothic16', sans-serif;">
+                    My Story：大人を助けるシステムが、子供たちの幸せに繋がる
+                </h3>
+                <div class="profile-text">
+                    <p>元々は子供たちが大好きで、大学も教育学部を選び、念願の教員の道へと進みました。しかし、教育の現場で目の当たりにしたのは、日々の膨大な成績処理や事務作業に追われ、肝心の子供たちと向き合う時間が削られていく先生方の過酷な現状でした。</p>
+                    <p>そんな中、独学で作成したExcelマクロを使った成績処理の自動化ツールを周囲の先生方に共有したところ、「作業負担が劇的に減った」「その分、放課後に子供たちの相談に乗る時間が作れた」という喜びの声を多くいただきました。自分が作った仕組みによって、身近な大人の負担が減り、巡り巡って子供たちに向き合う時間が増えるという素晴らしい変化を体感した瞬間でした。</p>
+                    <p>教員として目の前のクラスの子供たちを大切にすることも素晴らしい仕事ですが、もし自分が「大人を助けるシステムを作る側」に回れば、もっと広い範囲の先生方や働く大人たちを救うことができる。大人が心にゆとりを持って働ける環境を作ることこそが、結果的に子供たちの幸せに最も深く貢献できるアプローチであると確信し、エンジニアへの転職を決意しました。</p>
+                    
+                    <div class="terminal-wrapper mini js-terminal-career" style="margin-top: 40px;">
+                        <div class="terminal-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <span class="terminal-title">bash - cat career_log.txt</span>
+                        </div>
+                        <div class="terminal-body" id="typing-career" style="min-height: 100px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="strength-section js-fade-element">
+            <div class="section-container">
+                <h3 style="font-size: 1.6rem; margin-bottom: 30px; color: var(--accent-color); font-family: 'DotGothic16', sans-serif;">
+                    My Strength：ドキュメントを徹底的に紐解き、シンプルに再生する
+                </h3>
+                <div class="profile-text">
+                    <p>私のエンジニアとしてのこだわりは、スピードだけに頼った急進的な開発ではなく、既存のシステム（オールドシステム）の仕様や公式ドキュメントを丁寧に読み込み、本質を完全に理解した上で実装を組み立てる点にあります。</p>
+                    <p>実務においても、過去の慣習からテーブルごとに乱立し、メンテナンス性が著しく低下していた複数のデータベース処理バッチ（PostgreSQL / SQL Server）の課題に直面した際、公式ドキュメントを徹底的に調査しました。バッチに変数を渡して多重処理できる仕様を突き止め、それまで個別に作られていた大量のバッチを「1つのテンプレートバッチ」と「変数リストファイル」という極めてシンプルな構成に集約することに成功しました。</p>
+                    <p>単に「動けばいい」という場当たり的なコードを書くのではなく、ファイルやフォルダの構成まで含めてストラクチャを徹底的にシンプルに整えることで、将来誰が運用しても手戻りのない、美しく安全なシステムを提供することが私の強みです。</p>
+                    
+                    <div class="terminal-wrapper mini js-terminal-skills" style="margin-top: 40px;">
+                        <div class="terminal-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <span class="terminal-title">bash - ./get_skills_summary.sh</span>
+                        </div>
+                        <div class="terminal-body" id="typing-skills" style="min-height: 120px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section js-fade-element">
+            <div class="section-container">
+                <h3 style="font-size: 1.6rem; margin-bottom: 30px; color: var(--accent-color); font-family: 'DotGothic16', sans-serif;">
+                    My Vision：「困り感」に寄り添い、誰もが少しずつ楽になる世界へ
+                </h3>
+                <div class="profile-text">
+                    <p>私が目指すのは、難しい専門用語を並べて複雑な最先端システムを一方的に構築するエンジニアではありません。ITツールやAIエージェントにまだ馴染みがない、あるいは「何ができるかすら分からないけれど、とにかく日々の業務を楽にしたい」と切実に願っている人たちの声なき「困り感」を正確に引き出す存在でありたいと考えています。</p>
+                    <p>教員時代に磨いた「相手の意図を正確に汲み取り、複雑なことを分かりやすく伝えるコミュニケーション能力」を活かし、クライアントと同じ目線に立って課題の本質を整理します。そして、大掛かりな開発を行わずとも、まずは実用的なモックレベルのツールや、効果的な共通コンポーネント（部品）を提供することで、「これが自動化されるだけで、明日からの業務がこれだけ楽になりますよ」という確かな安心感を届けていきます。</p>
+                    <p>現場の人々に優しく寄り添い、働く誰もがちょっとずつ業務を楽にしていける世界を作る。そして生まれた心のゆとりが、多くの人々の笑顔や子供たちの未来に還元されていくサイクルを、ITとエンジニアリングの力で支え続けていきます。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="common-contact"></div>
+
+    <div id="common-footer"></div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

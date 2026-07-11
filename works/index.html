@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works Details | Mariko Yamaguchi Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DotGothic16&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="common-header"></div>
+
+    <main style="padding-top: 80px;"> <section class="works-intro-section">
+            <div class="section-container" style="padding-bottom: 40px;">
+                <h2 class="section-title">Works Details</h2>
+                <div class="profile-text" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p>これまでに開発した個人プロジェクトの技術的な詳細、システム構成、および開発プロセスをまとめています。</p>
+                    <p>単にツールを動かすだけでなく、インフラのコスト最適化やセキュリティ対策など、実務を見据えたストラクチャの設計を徹底しています。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section js-fade-element" id="run-navigator">
+            <div class="section-container">
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--accent-color); font-family: 'DotGothic16', sans-serif;">
+                    朝ラン計画ナビ（morning-run-navigator）
+                </h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 30px;">ランニング習慣化のための気象データ解析・スケジュール自動算定アプリ</p>
+                
+                <div class="profile-text">
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">1. プロジェクトの概要と解決した課題</h4>
+                    <p>私自身の「毎朝ベッドの中で天気予報アプリと雨雲レーダーを往復し、走るか休むかウダウダと悩む時間をなくしたい」という強い原体験から開発しました。心理学で言われる「決断疲れ（Decision Fatigue）」による朝一番の精神的エネルギーの浪費を防ぎ、ボタンをポチッと押すだけで論理的な最適解を即決してくれる相棒のようなアプリを目指しました。</p>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">2. 主要コンポーネント・使用技術</h4>
+                    <p>フロントエンドからバックエンド、インフラまで完全サーバーレスのモダンなWebストラクチャで構築しています。</p>
+                    <ul>
+                        <li><strong>フロントエンド:</strong> HTML5 / CSS3 / JavaScript (Vanilla JS) ※初期検証としてStreamlitを使用</li>
+                        <li><strong>バックエンド:</strong> Python 3.12 / FastAPI / Mangum (Lambdaラッパー)</li>
+                        <li><strong>インフラ・外部API:</strong> Amazon S3 / Amazon CloudFront (OAC経由) / AWS Lambda / Amazon API Gateway / Open-Meteo API (気象データ取得)</li>
+                    </ul>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">3. こだわりポイント・技術的アピール</h4>
+                    <div style="border-left: 4px solid var(--accent-blue); padding: 16px 20px; background-color: var(--card-bg); border-radius: 0 4px 4px 0; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-blue);">■</span>
+                                <strong>あえてデータベース（RDS）を作らない「エコ・インフラ」設計</strong><br>
+                                24時間起動で固定費がかかるRDS等のデータベースを一切構築せず、アプリに必要な都道府県マスタ（数KBのCSV）をバックエンドのZIPに同梱。Pythonの標準ライブラリでメモリ上に直接展開することで、運用固定費を「ほぼ0円（Route 53のドメイン維持費のみ）」に抑え込むコスト最適化を徹底しました。
+                            </li>
+                            <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-blue);">■</span>
+                                <strong>CloudFront OAC を用いた高セキュリティ静的ホスティング</strong><br>
+                                AWS SAAの設計思想に基づき、画面ファイルを格納する Amazon S3 のパブリックアクセスを全面ブロック。手前に Amazon CloudFront を配置し、OAC（Origin Access Control）によるアクセス制限を施すことで、S3への直接アクセスを遮断し、HTTPS暗号化通信に一本化したセキュアな王道インフラを構築しました。
+                            </li>
+                            <li style="padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-blue);">■</span>
+                                <strong>データ駆動型のシビアな減点アルゴリズム</strong><br>
+                                朝5時〜8時の降水確率・風速・体感温度データをシビアに評価し、傘が必要な雨なら大減点、向かい風が強すぎても減点といった、100点満点からの独自減点方式で採点。感情を挟まないデータ主導のスケジュール算定ロジックを実装しました。
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">4. 開発プロセスとトラブルシューティング</h4>
+                    <p><strong>【検証からリファクタリング】</strong> まずは最速でロジックを検証するため、PythonのみでUIまで作れるStreamlitでプロトタイプを開発。動作確認後、HTML/CSS/JSへのリファクタリングを行いました。その際、「関心の分離（Separation of Concerns）」を徹底し、インラインデザインを徹底的に排除したクリーンな外部CSS構成へ整理しました。画面間のデータ受け渡しには <code>sessionStorage</code> を採用し、軽量でクリーンな状態遷移を実現しています。</p>
+                    <p><strong>【環境依存エラーの撃破】</strong> ローカルのMac環境からLinuxベースのAWS LambdaへFastAPIをデプロイする際、一部ライブラリのバイナリ互換性エラーに直面。これに対し、pipの <code>--platform manylinux2014_x86_64</code> などのコンパイルオプションを名指しで指定してパッケージをビルドすることで、OS間の壁を乗り越えました。また、Lambda上でのカレントディレクトリのズレによるファイル読み込みエラーも、Pythonの <code>sys.path.append</code> を用いて絶対パスを強制追加するコードを仕込み、解決しました。</p>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">5. 実実装リンク</h4>
+                    <div style="margin-top: 16px;">
+                        <a href="https://d20ju2xziuwnwt.cloudfront.net/index.html" target="_blank" rel="noopener noreferrer" class="pseudo-link" style="margin-right: 30px;">🔗 アプリを試す（CloudFront公開サイト）</a>
+                        <a href="https://github.com/Mari714323/morning-run-navigator" class="pseudo-link">🔗 GitHubリポジトリ（ソースコード）</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="strength-section js-fade-element" id="docugen-ai">
+            <div class="section-container">
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--accent-color); font-family: 'DotGothic16', sans-serif;">
+                    ドキュメント作成AIエージェント（DocuGen AI）
+                </h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 30px;">Gemini APIとビジネスフレームワークを融合した資料構成案自動生成アプリ</p>
+                
+                <div class="profile-text">
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">1. プロジェクトの概要と解決した課題</h4>
+                    <p>ブログの記事や仕事の設計書・提案書など、資料作成の最初の一歩で「白紙を前にして手が止まる時間」を無くすために開発した自分専用のアシスタントです。文章の「0から1の構成案」を考える作業に最もエネルギーを消費するという課題に着目し、最初の骨組みを爆速で組み上げる仕組みを作りました。</p>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">2. 主要コンポーネント・使用技術</h4>
+                    <p>バックエンドの機能とAIプロンプトの設計に開発リソースを集中させるため、軽量で高機能な構成を選定しています。</p>
+                    <ul>
+                        <li><strong>フロントエンド / バックエンド:</strong> Python (Streamlitフレームワークによる統合UI)</li>
+                        <li><strong>生成AIエンジン:</strong> Gemini 2.5 Flash API</li>
+                        <li><strong>ファイル出力機能:</strong> python-docx (Word形式ダウンロード)</li>
+                    </ul>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">3. こだわりポイント・技術的アピール</h4>
+                    <div style="border-left: 4px solid var(--accent-yellow); padding: 16px 20px; background-color: var(--card-bg); border-radius: 0 4px 4px 0; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-yellow);">■</span>
+                                <strong>他者公開を見据えた「APIキー課金・流出リスク対策」</strong><br>
+                                個人開発アプリをネット公開する際、最大の懸念となる開発者自身のAPIキー流出や予期せぬ巨額課金を防ぐ画面設計を導入。ローカル環境では環境変数（.env）から自動読込し、Web公開時にはユーザー自身に個人のAPIキーを入力してもらうサイドバー入力方式を採用し、安全に一般公開できる仕様に仕上げました。
+                            </li>
+                            <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-yellow);">■</span>
+                                <strong>ビジネスフレームワークを組み込んだプロンプトエンジニアリング</strong><br>
+                                単に自由文章を作らせるのではなく、提案書にはロジカルシンキングの基本である「PREP法」、報告書には客観性を担保する「事実と解釈の分離」と「潜在リスクのアドバイス」、設計書にはシニアアーキテクトに扮した「代替案の技術提案」など、実務でそのまま叩き台として使えるプロンプトの構造化を行いました。
+                            </li>
+                            <li style="padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--accent-yellow);">■</span>
+                                <strong>実務へシームレスに繋ぐワンクリックWord（.docx）出力機能</strong><br>
+                                ブラウザ上でのコピー＆ペーストの手間を省くため、生成された構成案をそのままビジネス文書として再利用できるよう、Wordファイルとして手元にダウンロードできる機能を実装し、利便性を高めました。
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">4. 開発プロセスとトラブルシューティング</h4>
+                    <p><strong>【4時間での爆速個人開発】</strong> 面倒な画面のHTML/CSSコーディングを大幅に端折れるStreamlitを手段として柔軟に採用したことで、デザイン調整からネット公開までをわずか4時間という驚異的なスピードでやり遂げました。これにより、自分が最も頭を使いたい「本質的な課題解決（AIのプロンプトの練り込みや出力処理）」に時間を100%集中させることができました。</p>
+                    <p><strong>【状態管理の制約克服】</strong> 開発の途中、コードの修正・再レンダリングを繰り返す中でStreamlit特有の「duplicate ID（入力欄の識別子重複エラー）」の壁に直面。AIの生成コードを鵜呑みにせず、フレームワークが裏側で画面要素を一意に識別するための <code>key</code> 属性のライフサイクルと制約の仕組みを徹底して勉強し直すことで構造を理解。すべての入力フォームに適切な一意のキーを自力で再配分し、エラーを根本から解消しました。</p>
+
+                    <h4 style="font-size: 1.2rem; margin: 24px 0 12px; color: var(--text-main); font-weight: 700;">5. 実装リンク</h4>
+                    <div style="margin-top: 16px;">
+                        <a href="https://docugen-ai-cwfvhfuzwcj2kmu3943pgz.streamlit.app/" target="_blank" rel="noopener noreferrer" class="pseudo-link" style="margin-right: 30px;">🔗 アプリを試す（Streamlit公式ホスティング）</a>
+                        <a href="https://github.com/Mari714323/docugen-ai" class="pseudo-link">🔗 GitHubリポジトリ（ソースコード）</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="common-contact"></div>
+
+    <div id="common-footer"></div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
