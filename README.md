@@ -8,6 +8,7 @@
 - **URL構造**: ユーザーフレンドリーな Pretty URLs (`/about/`, `/works/`) の採用
 
 ##  ディレクトリ構造
+```text
 /
 ├── index.html             # トップページ
 ├── about/
@@ -20,6 +21,7 @@
 ├── js/
 │   └── main.js            # メインスクリプト
 └── images/                # 最適化済み画像フォルダ
+```
 
 ##  開発環境
 - Visual Studio Code
