@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* ==========================================================================
-       5. 【AWS連携準備】お問い合わせフォーム送信処理（モック処理）
+       5. 【AWS連携】お問い合わせフォーム送信処理
        ========================================================================== */
     const initContactForm = () => {
         const contactForm = document.getElementById('contact-form');
@@ -325,10 +325,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 try {
-                    console.log('[Mock] お問い合わせ: API Gatewayへ以下のデータを送信中...', formData);
+                    console.log('お問い合わせ: API Gatewayへ以下のデータを送信中...', formData);
                     
-                    // 通信のタイムラグをシミュレート（1.5秒待機）
-                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    // GitHub公開用：URLは環境に合わせて書き換えてください
+                    const API_ENDPOINT = 'https://XXXXX.execute-api.ap-northeast-1.amazonaws.com/prod/contact';
+                    
+                    // AWS API Gatewayへの通信
+                    const response = await fetch(API_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    // HTTPステータスが200番台以外の場合はエラーとして扱う
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
                     // 成功時のUI更新
                     formStatus.textContent = 'お問い合わせを受け付けました。追ってご連絡いたします。';
