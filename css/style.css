@@ -343,22 +343,19 @@ a.work-card {
 }
 
 /* カード全体のデフォルトホバー：レトロポップなソリッドシャドウ */
+a.work-card {
+    --card-hover-color: var(--accent-color); /* デフォルト色 */
+}
+a.work-card.theme-blue {
+    --card-hover-color: var(--accent-blue);
+}
+a.work-card.theme-green {
+    --card-hover-color: var(--accent-yellow);
+}
 a.work-card:hover {
     transform: translate(-4px, -4px); /* 斜め上に浮き上がる */
-    box-shadow: 6px 6px 0px var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-/* Work1：青系のソリッドシャドウ */
-a.work-card.theme-blue:hover {
-    box-shadow: 6px 6px 0px var(--accent-blue);
-    border-color: var(--accent-blue);
-}
-
-/* Work2：黄色系のソリッドシャドウ（テーマカラーに合わせて変更） */
-a.work-card.theme-green:hover {
-    box-shadow: 6px 6px 0px var(--accent-yellow);
-    border-color: var(--accent-yellow);
+    box-shadow: 6px 6px 0px var(--card-hover-color);
+    border-color: var(--card-hover-color);
 }
 
 .work-image {
@@ -419,9 +416,8 @@ a.work-card:hover .pseudo-link {
     border-color: var(--text-muted);
 }
 
-/* 【修正】汎用リンクボタン（Works詳細、Profile詳細 共通）のスタイリング */
-.works-more-btn,
-.profile-more-btn {
+/* 汎用リンクボタン（Works詳細、Profile詳細 共通）のスタイリング */
+.btn-more {
     display: inline-block;
     background-color: transparent;
     color: var(--accent-color);
@@ -431,15 +427,12 @@ a.work-card:hover .pseudo-link {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 0.05em;
-    /* カードのホバーアニメーションの速度と統一 */
     transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 実績カードと統一感を持たせた、レトロポップなソリッドシャドウホバー演出 */
-.works-more-btn:hover,
-.profile-more-btn:hover {
-    transform: translate(-4px, -4px); /* 斜め上に浮き上がる */
-    box-shadow: 4px 4px 0px var(--accent-color); /* エンジ色（ダークモード時は黄色）のソリッド影 */
+.btn-more:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0px var(--accent-color);
 }
 
 /* ==========================================================================
